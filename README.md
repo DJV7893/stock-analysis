@@ -12,6 +12,7 @@ Steve, a recent graduate with a degree in finance, asked us to analyze a list of
 ### Stock Performance
 
 In the 2017 and 2018 stock data we output into two separate tables we can see a significant difference in yearly stock performance. In 2017 all stocks except for TERP had a positive return especially DQ, ENPH, FSLR and SEDG all of which had a return of more than 100%. However in 2018 we saw a steep decline in stock performance with all but 2 of the stocks, ENPH and RUN, having a negative yearly return.
+
 <img width="486" alt="2017_vs_2018_StockPerformance" src="https://user-images.githubusercontent.com/99817571/156820400-87ccb2e1-412f-4929-9774-3c3a18528118.png">
 
 ### Execution Time
@@ -75,8 +76,6 @@ The main difference between my refactored and original code is the creation of a
         Cells(4 + i, 1).Value = tickers(i)
         Cells(4 + i, 2).Value = tickerVolumes(i)
         Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
-![image](https://user-images.githubusercontent.com/99817571/156820709-f4fbe5d6-1bd4-498b-a1a4-fcbcbc9316be.png)
-
 
 The changes in our script resulted in a significant decrease in the run time for both output tables. For both the 2017 and 2018 stock data we reduced the running time of the script from .52 seconds to .11 seconds.
 
