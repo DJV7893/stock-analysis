@@ -15,7 +15,7 @@ In the 2017 and 2018 stock data that was output into two separate tables we can 
 
 <img width="486" alt="2017_vs_2018_StockPerformance" src="https://user-images.githubusercontent.com/99817571/156820400-87ccb2e1-412f-4929-9774-3c3a18528118.png">
 
-### Execution Time
+### Code and Execution Time
 The main difference between the refactored and original code is the creation of arrays for the calculation of Total Volume, Starting Price and Ending Price for each stock. These arrays allow us to eliminate the nested loop and capture in memory the stock information. As we can see in the altered script, the use of an index allows us to loop through the different arrays for the calculation of the values. In the original script we only used an array for the stock ticker and all the calculations are done through the inner loop and before going to the next stock index the values are outputted into the table. Meanwhile, in the refactored code once the values in all 3 of the output arrays are calculated, we then have to create a loop to display the stock ticker, total volume and yearly return in the table.
 
     '1a) Create a ticker Index
@@ -71,7 +71,7 @@ The main difference between the refactored and original code is the creation of 
         Cells(4 + i, 2).Value = tickerVolumes(i)
         Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
 
-The changes in the script resulted in a significant decrease in run time for both output tables. For both the 2017 and 2018 stock data the run time of the code was reduced from .52 seconds to .11 seconds.
+The changes in the script resulted in a significant decrease in execution time for both output tables. For both the 2017 and 2018 stock data the execution time of the code was reduced from .52 seconds to .11 seconds.
 
 <img width="536" alt="Run_Time_2017s" src="https://user-images.githubusercontent.com/99817571/156822048-c46e6226-2c8f-40f6-9b14-7efec48fa1f4.png">
 
@@ -82,4 +82,4 @@ The changes in the script resulted in a significant decrease in run time for bot
 ---
 Refactoring allows us to go through our original code in order to scrutinize elements of our script and identify if there are more efficient ways of collecting and outputting the same information. If we stay put with our original code, we could run into issues in the future if more data or different variables are incorporated into the dataset. This could potentially slow down our ability to produce the desired data. However, in the process of refactoring our code we can potentially distort or halt entirely the output of information if our syntax is not accurate. It can be a tedious process to refactor code if one is not attentive throughout when removing or improving the logic of certain steps throughout the script if they do not flow with the rest of the script.
 
-As we saw when refactoring the Stock Analysis code, improving the logic by removing nested loops for multiple arrays reduced the run time by .41 seconds. But the process of editing that portion of the script was tedious as I ran into several errors when updating the code for it to sequentially store the data into each array before proceeding to the next index. Had I not ensured that the updated portions of the script worked seamlessly with the rest of the Stock Analysis code, then I wouldn’t be able to even produce the original output tables. With a careful attention to syntactical changes the new script gave the desired result of improved execution time without output errors.
+As we saw when refactoring the Stock Analysis code, improving the logic by removing nested loops for multiple arrays reduced the execution time by .41 seconds. But the process of editing that portion of the script was tedious as I ran into several errors when updating the code for it to sequentially store the data into each array before proceeding to the next index. Had I not ensured that the updated portions of the script worked seamlessly with the rest of the Stock Analysis code, then I wouldn’t be able to even produce the original output tables. With a careful attention to syntactical changes the new script gave the desired result of improved execution time without output errors.
