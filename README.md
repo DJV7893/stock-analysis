@@ -16,14 +16,12 @@ In the 2017 and 2018 stock data we output into two separate tables we can see a 
 <img width="486" alt="2017_vs_2018_StockPerformance" src="https://user-images.githubusercontent.com/99817571/156820400-87ccb2e1-412f-4929-9774-3c3a18528118.png">
 
 ### Execution Time
-The main difference between my refactored and original code is the creation of arrays for the calculation of Total Volume, Starting Price and Ending Price for each stock. These arrays allow us to eliminate the nested loop and capture in memory the stock information. As you can see in the altered script, we used an index to allow us to loop through the different arrays for the calculation of the values. In the original script we only used an array for the stock ticker and all the calculations are done through the inner loop and before going to the next stock index the values are outputted into the table. Meanwhile, in the refactored script once we calculated the values in all 3 of the arrays, we had to create a loop to display the ticker volume and yearly return in the table.
+The main difference between my refactored and original code is the creation of arrays for the calculation of Total Volume, Starting Price and Ending Price for each stock. These arrays allow us to eliminate the nested loop and capture in memory the stock information. As you can see in the altered script, we used an index to allow us to loop through the different arrays for the calculation of the values. In the original script we only used an array for the stock ticker and all the calculations are done through the inner loop and before going to the next stock index the values are outputted into the table. Meanwhile, in the refactored script once we calculated the values in all 3 of the output arrays, we had to create a loop to display the stock ticker, total volume and yearly return in the table.
 
     '1a) Create a ticker Index
-    
     tickerIndex = 0
     
     '1b) Create three output arrays
-    
     Dim tickerVolumes(12) As Long
     Dim tickerStartingPrices(12) As Single
     Dim tickerEndingPrices(12) As Single
@@ -36,15 +34,12 @@ The main difference between my refactored and original code is the creation of a
     Next i
         
     '2b) Loop over all the rows in the spreadsheet.
-    
     For i = 2 To RowCount
     
         '3a) Increase volume for current ticker
-        
         tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
         
         '3b) Check if the current row is the first row with the selected tickerIndex.
-        
         If Cells(i - 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
         
                 tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
@@ -53,8 +48,8 @@ The main difference between my refactored and original code is the creation of a
             
             
         '3c) check if the current row is the last row with the selected ticker
+         
          'If the next row’s ticker doesn’t match, increase the tickerIndex.
-        
         If Cells(i + 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
     
                 tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
@@ -69,7 +64,6 @@ The main difference between my refactored and original code is the creation of a
     Next i
     
     '4) Loop through your arrays to output the Ticker, Total Daily Volume, and Return.
-    
     For i = 0 To 11
         
         Worksheets("All Stocks Analysis").Activate
@@ -77,7 +71,7 @@ The main difference between my refactored and original code is the creation of a
         Cells(4 + i, 2).Value = tickerVolumes(i)
         Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
 
-The changes in our script resulted in a significant decrease in the run time for both output tables. For both the 2017 and 2018 stock data we reduced the running time of the script from .52 seconds to .11 seconds.
+The changes in our script resulted in a significant decrease in the run time for both output tables. For both the 2017 and 2018 stock data we reduced the run time of the script from .52 seconds to .11 seconds.
 
 <img width="536" alt="Run_Time_2017s" src="https://user-images.githubusercontent.com/99817571/156822048-c46e6226-2c8f-40f6-9b14-7efec48fa1f4.png">
 
@@ -88,4 +82,4 @@ The changes in our script resulted in a significant decrease in the run time for
 ---
 Refactoring allows us to go through our original code in order to scrutinize elements of our script and identify if there are more efficient ways of collecting and outputting the same information. If we stay put with our original code, we could run into issues in the future if more data or different variables are incorporated into the dataset. This could potentially slow down our ability to produce the desired data. However, in the process of refactoring our code we can potentially distort or halt entirely the output of information if our syntax is not accurately organized or spelled. It can be a tedious process to refactor code if one is not attentive throughout when removing or improving the logic of certain steps throughout the script if they do not flow with the rest of the script.
 
-As I saw when refactoring the Stock Analysis code, improving the logic by removing nested loops for multiple arrays reduced the execution time by .41 seconds. But the process of editing that portion of the script was tedious as I ran into several errors when updating the code for it to sequentially store the data into each array before proceeding to the next index. Had I not ensured that the updated portions of the script worked seamlessly with the rest of the Stock Analysis code, then I wouldn’t even be able to produce the original output tables. With a careful attention to syntactical changes the new script gave the desired result of improved execution time without output errors.
+As I saw when refactoring the Stock Analysis code, improving the logic by removing nested loops for multiple arrays reduced the execution time by .41 seconds. But the process of editing that portion of the script was tedious as I ran into several errors when updating the code for it to sequentially store the data into each array before proceeding to the next index. Had I not ensured that the updated portions of the script worked seamlessly with the rest of the Stock Analysis code, then I wouldn’t be able to even produce the original output tables. With a careful attention to syntactical changes the new script gave the desired result of improved execution time without output errors.
